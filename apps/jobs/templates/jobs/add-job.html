@@ -1,0 +1,79 @@
+{% extends 'jobs/layout.html' %}
+{% block title %} {{block.super}} | Add Job {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+                {% if messages %}
+                <ul class="messages mt-5 mb-5">
+                    {% for message in messages %}
+                        <li {% if message.tags == "error" %} class="bg-danger text-white" 
+                        {% elif message.tags == "success" %} class="bg-success text-white"
+                        {% endif %}>{{message}}</li><br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="card p-5 mt-5 mb-5">
+                <div class="card-header text-center">
+                    <h1>Add Job</h1>
+                </div>
+                <div class="card-body">
+                    <form action="process_job" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <select name="skill_level" class="form-control">
+                                    <option value="Beginner">Beginner</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Expert">Expert</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <select name="length" class="form-control">
+                                    <option value="Month">1 Month</option>
+                                    <option value="Three Months">3 Months</option>
+                                    <option value="Six Months">6 Months</option>
+                                    <option value="Twelve Months Or Longer">12+ Months</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="number" name="budget" class="form-control" min="1"max="100000000000000" placeholder="Budget">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" name="pay_type" class="form-control" placeholder="Pay Type">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="title" class="form-control" placeholder="Title of Job">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" name="area" class="form-control" placeholder="Designated area of job and if it is remote or onsite">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <textarea name="desc" cols="30" rows="10" class="form-control" placeholder="Job Description"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <textarea name="requirements" cols="30" rows="10" class="form-control" placeholder="Job Requirements"></textarea>
+                            </div>
+                        </div>
+                        <input type="submit" value="Add Job" class="btn btn-info btn-round">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

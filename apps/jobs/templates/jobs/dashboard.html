@@ -1,0 +1,59 @@
+{% extends 'jobs/layout.html' %}
+{% block title %} {{block.super}} | {{user.first_name}}'s Profile {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+                {% if messages %}
+                <ul class="messages mt-5 mb-5">
+                    {% for message in messages %}
+                        <li {% if message.tags == "error" %} class="bg-danger text-white" 
+                        {% elif message.tags == "success" %} class="bg-success text-white"
+                        {% endif %}>{{message}}</li><br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+			<div class="card p-2 mt-5 mb-5">
+				<div class="card-header text-center">
+					<span><a href=""class="btn btn-success">Add Profile</a></span>
+					<span><a href="" class="btn btn-success">Edit Profile</a></span>
+				</div>
+				<div class="card-body text-center">
+                    <div class="main-cred shadow-lg">
+                        <p>Name <br> {{user.first_name}} {{user.last_name}}</p>
+                        <p>Email <br> {{user.email}}</p>
+                        <p>Username <br>{{user.username}}</p>
+                        <p >Member Since <br> {{user.created_at}}</p>
+                    </div>
+                    <div class="profile">
+                        <p class="lead">Experience <br> {{profile.experience}}</p>
+                        <p>Skill Level: {{profile.skill_level}}</p>
+                        <p>Past Jobs</p>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="card p-2 mt-5 mb-5">
+                <div class="card-header text-center">
+                    <h3>Applied Jobs</h3>
+                </div>
+                <div class="card-body">
+                    
+                </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
