@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Job Directory{% endblock %}</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     {% load static %}
     <link rel="stylesheet" href="{% static 'jobs/theme/assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'jobs/theme/assets/css/now-ui-kit.min.css' %}">
@@ -35,8 +36,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/add-job">Add Job</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
                     </di>
                     </li>
                 </ul>
@@ -51,6 +51,7 @@
     <script src="{% static 'jobs/theme/assets/js/core/jquery.min.js' %}"></script>
     <script src="{% static 'jobs/theme/assets/js/core/popper.min.js' %}"></script>
     <script src="{% static 'jobs/theme/assets/js/core/bootstrap.min.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="{% static 'jobs/theme/assets/js/now-ui-kit.min.js' %}"></script>
     <script src="{% static 'jobs/assets/js/app.js' %}"></script>
 </body>

@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^jobs$', views.jobs_list),
     url(r'^search/$', views.search),
     url(r'^add-job$', views.add_job),
+    url(r'^process_job$', views.process_job),
 ]

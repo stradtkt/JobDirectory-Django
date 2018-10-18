@@ -115,11 +115,19 @@ class Job(models.Model):
     budget = models.IntegerField()
     accepted_terms = models.BooleanField()
     area = models.CharField(max_length=255)
+    company = models.CharField(max_length=255, default="Unknown")
     skill_level = models.CharField(max_length=255)
     pay_type = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = JobManager()
+
+class UserApplied(models.Model):
+    user_applied = models.BooleanField()
+    cover_letter = models.TextField()
+    amount_charge = models.IntegerField()
+    user = models.ForeignKey(User, related_name="applicant", on_delete=models.DO_NOTHING)
+    job = models.ForeignKey(Job, related_name="job", on_delete=models.DO_NOTHING)
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

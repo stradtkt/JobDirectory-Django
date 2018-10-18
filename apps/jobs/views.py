@@ -59,14 +59,14 @@ def dashboard(request):
     if 'id' in request.session == None:
         return redirect('/')
     user = User.objects.get(id=request.session['id'])
-    # job = Job.objects.get(user=user)
-    # profile = Profile.objects.get(user=user)
-    # past_jobs = PastJobs.objects.get(profile=profile)
+    applied = UserApplied.objects.filter(user=user)
+    profile = Profile.objects.filter(user=user)
+    past_jobs = PastJobs.objects.filter(profile=profile)
     context = {
         "user": user,
-        # "jobs": job,
-        # "profile": profile,
-        # "past_jobs": past_jobs
+        "jobs": applied,
+        "profile": profile,
+        "past_jobs": past_jobs
     }
     return render(request, 'jobs/dashboard.html', context)
 
@@ -78,15 +78,21 @@ def jobs_list(request):
 
     if 'id' in request.session == None:
         return redirect('/')
-    job = Job.objects.all()
-    category_list = CategoryList.objects.all()
-    jobs = JobList.objects.get(job=job, category_list=category_list)
+    jobs = Job.objects.all()
     context = {
         "jobs":jobs
     }
     return render(request, 'jobs/jobs.html', context)
 
+
 def add_job(request):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
     return render(request, 'jobs/add-job.html')
 
 def process_job(request):
@@ -104,7 +110,8 @@ def process_job(request):
         area = request.POST['area']
         skill_level = request.POST['skill_level']
         pay_type = request.POST['pay_type']
-        Job.objects.create(title=title, desc=desc, requirements=requirements, length=length, budger=budget, area=area, skill_level=skill_level, pay_type=pay_type)
+        company = request.POST['company']
+        Job.objects.create(title=title, desc=desc, requirements=requirements, length=length, budger=budget, area=area, skill_level=skill_level, pay_type=pay_type, company=company)
         messages.success(request, "Successfully Added Job")
         return redirect('/jobs')
 
