@@ -58,7 +58,7 @@ class User(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, related_name="profile", on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, related_name="past_jobs", on_delete=models.DO_NOTHING)
     expreience = models.TextField()
     skill_level = models.CharField(max_length=255)
     langauges = models.CharField(max_length=1000)
@@ -85,6 +85,7 @@ class PastJobsManager(models.Manager):
         return errors
 
 class PastJobs(models.Model):
+    user = models.ForeignKey(User, related_name="profile", on_delete=models.DO_NOTHING)
     date_from = models.DateField(auto_now=False)
     date_to  = models.DateField(auto_now=False)
     job_title = models.CharField(max_length=255)
@@ -92,7 +93,7 @@ class PastJobs(models.Model):
     job_desc = models.TextField()
     objects = PastJobsManager()
 
-class JobManager(models.Model):
+class JobManager(models.Manager):
     def validate_job(self,postData):
         errors = {}
         if len(postData['title']) < 3:
@@ -106,13 +107,12 @@ class JobManager(models.Model):
         return errors
 
 class Job(models.Model):
-    user = models.ForeignKey(User, related_name="employee", on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=255)
     desc = models.TextField()
     requirements = models.TextField()
     length = models.IntegerField()
     budget = models.IntegerField()
-    accepted_terms = models.BooleanField()
+    accepted_terms = models.BooleanField(default=False)
     area = models.CharField(max_length=255)
     company = models.CharField(max_length=255, default="Unknown")
     skill_level = models.CharField(max_length=255)

@@ -61,7 +61,7 @@ def dashboard(request):
     user = User.objects.get(id=request.session['id'])
     applied = UserApplied.objects.filter(user=user)
     profile = Profile.objects.filter(user=user)
-    past_jobs = PastJobs.objects.filter(profile=profile)
+    past_jobs = PastJobs.objects.filter(user=user)
     context = {
         "user": user,
         "jobs": applied,
@@ -111,7 +111,7 @@ def process_job(request):
         skill_level = request.POST['skill_level']
         pay_type = request.POST['pay_type']
         company = request.POST['company']
-        Job.objects.create(title=title, desc=desc, requirements=requirements, length=length, budger=budget, area=area, skill_level=skill_level, pay_type=pay_type, company=company)
+        Job.objects.create(title=title, desc=desc, requirements=requirements, length=length, budget=budget, area=area, skill_level=skill_level, pay_type=pay_type, company=company)
         messages.success(request, "Successfully Added Job")
         return redirect('/jobs')
 
@@ -132,12 +132,13 @@ def process_past_jobs(request):
             messages.error(request, error)
         return redirect('/')
     else:
+        user = User.objects.get(id=request.session['id'])
         date_from = request.POST['date_from']
         date_to = request.POST['date_to']
         job_title = request.POST['job_title']
         company = request.POST['company']
         job_desc = request.POST['job_desc']
-        PastJobs.objects.create(date_from=date_from, date_to=date_to, job_title=job_title, company=company, job_desc=job_desc)
+        PastJobs.objects.create(user=user, date_from=date_from, date_to=date_to, job_title=job_title, company=company, job_desc=job_desc)
         messages.success(request, 'Added past job, want to add another?')
         return redirect('/add-past-jobs')
 

@@ -26,16 +26,15 @@
                     <h1>Jobs</h1>
                 </div>
                 <div class="card-body">
-                    {% for job in jobs: %}
+                    {% for job in jobs %}
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <a href="/{{job.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{job_title}}</h5>
-                                <span><small>{{job.length}}</small> <small>{{job.budget}}</small> <small>{{job.pay_type}}</small></span>
+                                <h5 class="mb-1">{{job.job_title}}</h5>
+                                <p>{{job.company}} | {{job.area}} | Length: {{job.length}} | Budget: {{job.budget}} - {{job.pay_type}}</p>
                                 <small>{{job.created_at}}</small>
                             </div>
-                            <p class="mb-1">{{job_description | truncatechars:255}}</p>
-                            <small>{{job.company}} | {{job.area}}</small>
+                            <p class="mb-1">{{job.desc|truncatechars:255}}</p>
                             </a>
                         </div>
                     {% endfor %}
