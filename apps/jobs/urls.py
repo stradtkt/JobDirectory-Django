@@ -10,4 +10,7 @@ urlpatterns = [
     url(r'^search/$', views.search),
     url(r'^add-job$', views.add_job),
     url(r'^process_job$', views.process_job),
+    url(r'^add-profile$', views.add_profile),
+    url(r'^add-past-jobs$', views.add_past_jobs),
+    url(r'^apply-for-job$', views.apply_for_job),
 ]

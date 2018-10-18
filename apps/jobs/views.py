@@ -115,7 +115,64 @@ def process_job(request):
         messages.success(request, "Successfully Added Job")
         return redirect('/jobs')
 
-        
+def add_past_jobs(request):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    return render(request, 'jobs/add-past-jobs.html')
+
+def process_past_jobs(request):
+    errors = PastJobs.objects.validate_past(request.POST)
+    if len(errors):
+        for tag, error in errors.items():
+            messages.error(request, error)
+        return redirect('/')
+    else:
+        date_from = request.POST['date_from']
+        date_to = request.POST['date_to']
+        job_title = request.POST['job_title']
+        company = request.POST['company']
+        job_desc = request.POST['job_desc']
+        PastJobs.objects.create(date_from=date_from, date_to=date_to, job_title=job_title, company=company, job_desc=job_desc)
+        messages.success(request, 'Added past job, want to add another?')
+        return redirect('/add-past-jobs')
+
+def add_profile(request):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    return render(request, 'jobs/add-profile.html')
+
+def process_profile(request):
+    user = User.objects.get(id=request.session['id'])
+    experience = request.POST['experience']
+    languages = request.POST['languages']
+    skill_level = request.POST['skill_level']
+    profile_pic = request.POST['profile_pic']
+    Profile.objects.create(user=user, experience=experience, languages=languages, skill_level=skill_level, profile_pic=profile_pic)
+    messages.success(request, 'Add items to your profile')
+    return redirect('/dashboard')
+
+def apply_for_job(request):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    return render(request, 'jobs/apply-for-job.html')
+
+
+
 def search(request):
     job_list = Job.objects.all()
     job_filter = JobFilter(request.GET, queryset=job_list)

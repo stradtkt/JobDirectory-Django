@@ -85,7 +85,6 @@ class PastJobsManager(models.Manager):
         return errors
 
 class PastJobs(models.Model):
-    profile = models.ForeignKey(Profile, related_name="past", on_delete=models.DO_NOTHING)
     date_from = models.DateField(auto_now=False)
     date_to  = models.DateField(auto_now=False)
     job_title = models.CharField(max_length=255)
