@@ -162,7 +162,7 @@ def process_profile(request):
     messages.success(request, 'Add items to your profile')
     return redirect('/dashboard')
 
-def apply_for_job(request):
+def apply_for_job(request, id):
     try:
         request.session['id']
     except KeyError:
@@ -170,9 +170,32 @@ def apply_for_job(request):
 
     if 'id' in request.session == None:
         return redirect('/')
-    return render(request, 'jobs/apply-for-job.html')
+    job = Job.objects.get(id=id)
+    context = {
+        "job": job
+    }
+    return render(request, 'jobs/apply-for-job.html', context)
 
+def process_apply(request, id):
+    user = User.objects.get(id=request.session['id'])
+    job = Job.objects.get(id=id)
+    cover_letter = request.POST['cover_letter']
+    amount_charged = request.POST['amount_charged']
+    UserApplied.objects.create(user=user, job=job, amount_charged=amount_charged, cover_letter=cover_letter)
 
+def job_single(request, id):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    job = Job.objects.get(id=id)
+    context = {
+        "job": job
+    }
+    return render(request, 'jobs/job.html', context)
 
 def search(request):
     job_list = Job.objects.all()

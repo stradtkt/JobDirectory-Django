@@ -26,20 +26,20 @@
                             </li>
                         </ul>
                     {% else %}
-                <ul class="navbar-nav">
+                <ul class="navbar-nav m-auto">
                     <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Menu
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/add-job">Add Job</a>
-                        <a class="dropdown-item" href="/add-past-jobs">Add Past Job</a>
-                        <a class="dropdown-item" href="/add-profile">Add Profile</a>
-                        <a class="dropdown-item" href="/logout">Logout</a>
-                    </di>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/jobs">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Messages</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link">Logout</a>
                     </li>
                 </ul>
                 {% endif %}

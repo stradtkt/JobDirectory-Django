@@ -122,7 +122,7 @@ class Job(models.Model):
     objects = JobManager()
 
 class UserApplied(models.Model):
-    user_applied = models.BooleanField()
+    user_applied = models.BooleanField(default=True)
     cover_letter = models.TextField()
     amount_charge = models.IntegerField()
     user = models.ForeignKey(User, related_name="applicant", on_delete=models.DO_NOTHING)
