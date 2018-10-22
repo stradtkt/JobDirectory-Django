@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^dashboard/process_past_jobs$', views.process_past_jobs),
     url(r'^jobs/(?P<id>\d+)$', views.job_single),
     url(r'^jobs/(?P<id>\d+)/apply-for-job$', views.apply_for_job),
+    url(r'^jobs/(?P<id>\d+)/apply-for-job/process_apply$', views.process_apply),
 ]

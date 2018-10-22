@@ -59,12 +59,25 @@
                     <h3>Applied Jobs</h3>
                 </div>
                 <div class="card-body">
-                    
+                    {% for job in jobs %}
+                        <p>
+                            <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#data-{{job.id}}" aria-expanded="false" aria-controls="data-{{job.id}}">
+                                Applied Job
+                            </button>
+                            </p>
+                            <div class="collapse" id="data-{{job.id}}">
+                                <div class="card text-center">
+                                    <h3>{{job.job.company}} - {{job.job.title}}</h3>
+                                    <p>{{job.job.pay_type}}{{job.job.budget}} - Length: {{job.job.length}}</p>
+                                    <p>You Charged: {{job.amount_charged}}</p>
+                                    <p>Cover Letter <br> {{job.cover_letter}}</p>
+                                </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 		</div>
 	</div>
 </div>
-
 
 {% endblock %}

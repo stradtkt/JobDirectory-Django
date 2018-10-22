@@ -160,7 +160,9 @@ def process_apply(request, id):
     job = Job.objects.get(id=id)
     cover_letter = request.POST['cover_letter']
     amount_charged = request.POST['amount_charged']
-    UserApplied.objects.create(user=user, job=job, amount_charged=amount_charged, cover_letter=cover_letter)
+    UserApplied.objects.create(user=user, job=job, cover_letter=cover_letter, amount_charged=amount_charged)
+    messages.success(request, 'Applied Successfully')
+    return redirect('/dashboard')
 
 def job_single(request, id):
     try:
