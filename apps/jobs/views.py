@@ -60,12 +60,10 @@ def dashboard(request):
         return redirect('/')
     user = User.objects.get(id=request.session['id'])
     applied = UserApplied.objects.filter(user=user)
-    profile = Profile.objects.filter(user=user)
     past_jobs = PastJobs.objects.filter(user=user)
     context = {
         "user": user,
         "jobs": applied,
-        "profile": profile,
         "past_jobs": past_jobs
     }
     return render(request, 'jobs/dashboard.html', context)
@@ -142,25 +140,6 @@ def process_past_jobs(request):
         messages.success(request, 'Added past job, want to add another?')
         return redirect('/add-past-jobs')
 
-def add_profile(request):
-    try:
-        request.session['id']
-    except KeyError:
-        return redirect('/')
-
-    if 'id' in request.session == None:
-        return redirect('/')
-    return render(request, 'jobs/add-profile.html')
-
-def process_profile(request):
-    user = User.objects.get(id=request.session['id'])
-    experience = request.POST['experience']
-    languages = request.POST['languages']
-    skill_level = request.POST['skill_level']
-    profile_pic = request.POST['profile_pic']
-    Profile.objects.create(user=user, experience=experience, languages=languages, skill_level=skill_level, profile_pic=profile_pic)
-    messages.success(request, 'Add items to your profile')
-    return redirect('/dashboard')
 
 def apply_for_job(request, id):
     try:
@@ -197,7 +176,8 @@ def job_single(request, id):
     }
     return render(request, 'jobs/job.html', context)
 
+
 def search(request):
     job_list = Job.objects.all()
     job_filter = JobFilter(request.GET, queryset=job_list)
-    return render(request, 'job/job_list.html', {'filter': job_filter})
+    return render(request, 'jobs/job_list.html', {'filter': job_filter})

@@ -29,3 +29,13 @@ form input.btn {
 .main-cred p {
     color: white;
 }
+.search p input,
+.search p label,
+.search p {
+    display: block;
+}
+.search p input {
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 3px 3px 6px rgba(50,50,50,0.5)
+}

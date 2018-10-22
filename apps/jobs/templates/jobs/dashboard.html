@@ -23,8 +23,8 @@
 		<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 			<div class="card p-2 mt-5 mb-5">
 				<div class="card-header text-center">
-					<span><a href=""class="btn btn-success">Add Profile</a></span>
-					<span><a href="" class="btn btn-success">Edit Profile</a></span>
+                    <span><a href="" class="btn btn-info">Edit Profile</a></span>
+                    <span><a href="/dashboard/add-past-jobs" class="btn btn-info">Add Past Job</a></span>
 				</div>
 				<div class="card-body text-center">
                     <div class="main-cred shadow-lg bg-success">
@@ -32,18 +32,16 @@
                         <p>Email <br> {{user.email}}</p>
                         <p>Username <br>{{user.username}}</p>
                         <p >Member Since <br> {{user.created_at}}</p>
-                        <p class="lead">Experience <br> {{profile.experience}}</p>
-                        <p>Skill Level: {{profile.skill_level}}</p>
                     </div>
                         <div class="past-jobs mt-3">
                             <h3>Past Jobs</h3>
                             {% for past_job in past_jobs %}
                             <p>
-                                <button class="btn btn-success type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                <button class="btn btn-info type="button" data-toggle="collapse" data-target="#{{past_job.id}}" aria-expanded="false" aria-controls="{{past_job.id}}">
                                 {{past_job.company}}
                                 </button>
                             </p>
-                            <div class="collapse" id="collapseExample">
+                            <div class="collapse" id="{{past_job.id}}">
                                 <div class="card card-body text-center">
                                 <p class="lead">{{past_job.job_title}}</p>
                                 <p>{{past_job.date_from}} - {{past_job.date_to}}</p>
@@ -67,7 +65,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 {% endblock %}

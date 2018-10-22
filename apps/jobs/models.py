@@ -57,13 +57,6 @@ class User(models.Model):
     objects = UserManager()
 
 
-class Profile(models.Model):
-    user = models.ForeignKey(User, related_name="past_jobs", on_delete=models.DO_NOTHING)
-    expreience = models.TextField()
-    skill_level = models.CharField(max_length=255)
-    langauges = models.CharField(max_length=1000)
-    profile_pic = models.ImageField()
-
 class PastJobsManager(models.Manager):
     def validate_past(self, postData):
         errors = {}
