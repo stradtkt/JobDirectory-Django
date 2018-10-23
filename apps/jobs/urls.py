@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^jobs/(?P<id>\d+)/apply-for-job$', views.apply_for_job),
     url(r'^jobs/(?P<id>\d+)/apply-for-job/process_apply$', views.process_apply),
     url(r'^delete_job/(?P<id>\d+)$', views.delete_job),
+    url(r'^blog$', views.blog),
+    url(r'^blog/single_blog/(?P<id>\d+)$', views.single_blog),
 ]

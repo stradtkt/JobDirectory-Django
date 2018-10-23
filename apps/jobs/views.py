@@ -188,3 +188,31 @@ def search(request):
     job_list = Job.objects.all()
     job_filter = JobFilter(request.GET, queryset=job_list)
     return render(request, 'jobs/job_list.html', {'filter': job_filter})
+
+def blog(request):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    blogs = Blog.objects.all()
+    context = {
+        "blogs": blogs
+    }
+    return render(request, 'jobs/blog.html', context)
+
+def single_blog(request, id):
+    try:
+        request.session['id']
+    except KeyError:
+        return redirect('/')
+
+    if 'id' in request.session == None:
+        return redirect('/')
+    blog = Blog.objects.get(id=id)
+    context = {
+        "blog": blog
+    }
+    return render(request, 'jobs/single-post.html', context)
