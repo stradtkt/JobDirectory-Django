@@ -26,6 +26,8 @@
                     <h1>Jobs</h1>
                 </div>
                 <div class="card-body">
+                    {% load el_pagination_tags %}
+                    {% paginate jobs %}
                     {% for job in jobs %}
                         <div class="list-group">
                             <a href="/jobs/{{job.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -39,6 +41,7 @@
                         </div>
                         <br>
                     {% endfor %}
+                   <p class="lead text-center">{% show_pages %}</p>
                 </div>
             </div>
         </div>

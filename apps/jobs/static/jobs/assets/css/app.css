@@ -130,3 +130,6 @@ form input.btn {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
   }
+  .endless_page_current {
+    color: dodgerblue;
+  }

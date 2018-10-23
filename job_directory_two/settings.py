@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'el_pagination',
     'apps.jobs',
 ]
 
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'job_directory_two.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -101,6 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EL_PAGINATION_PER_PAGE = 5
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
