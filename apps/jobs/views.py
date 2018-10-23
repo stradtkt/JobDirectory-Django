@@ -76,7 +76,7 @@ def jobs_list(request):
 
     if 'id' in request.session == None:
         return redirect('/')
-    jobs = Job.objects.all()
+    jobs = Job.objects.all().order_by('-created_at')
     context = {
         "jobs":jobs
     }
@@ -178,6 +178,11 @@ def job_single(request, id):
     }
     return render(request, 'jobs/job.html', context)
 
+def delete_job(request, id): 
+    item = UserApplied.objects.get(id=id)
+    item.delete()
+    messages.success(request, 'Applied job successfully deleted')
+    return redirect('/dashboard')
 
 def search(request):
     job_list = Job.objects.all()
