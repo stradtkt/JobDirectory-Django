@@ -61,10 +61,18 @@ def dashboard(request):
     user = User.objects.get(id=request.session['id'])
     applied = UserApplied.objects.filter(user=user)
     past_jobs = PastJobs.objects.filter(user=user)
+    users = User.objects.all().count()
+    blogs = Blog.objects.all().count()
+    count_jobs = Job.objects.all().count()
+    applied_count = UserApplied.objects.filter(user=user).count()
     context = {
         "user": user,
         "jobs": applied,
-        "past_jobs": past_jobs
+        "past_jobs": past_jobs,
+        "jobs_amount": count_jobs,
+        "applied_amount": applied_count,
+        "blogs_amount": blogs,
+        "users": users
     }
     return render(request, 'jobs/dashboard.html', context)
 
@@ -216,3 +224,4 @@ def single_blog(request, id):
         "blog": blog
     }
     return render(request, 'jobs/single-post.html', context)
+

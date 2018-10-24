@@ -76,7 +76,9 @@
     <script src="{% static 'jobs/theme/assets/js/core/bootstrap.min.js' %}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="{% static 'jobs/theme/assets/js/now-ui-kit.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="{% static 'jobs/assets/js/jquery.shuffle-images.js' %}"></script>
+    <script src="{% static 'jobs/theme/js/plugins/bootstrap-tags-input.js' %}"></script>
     <script src="{% static 'jobs/assets/js/app.js' %}"></script>
     <script>
             $(document).ready(function(){
@@ -86,5 +88,40 @@
               });
       
     </script>
+    <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Applied Number", "Blogs", "Jobs", "Users"],
+                    datasets: [{
+                        label: "# of",
+                        data: ['{{applied_amount}}', '{{blogs_amount}}', '{{jobs_amount}}', '{{users}}'],
+                        backgroundColor: [
+                            '#4BB5FF',
+                            '#4BB5FF',
+                            '#4BB5FF',
+                            '#4BB5FF'
+                        ],
+                        borderColor: [
+                            'rgba(10,250,10,1)',
+                            'rgba(10,200,10,1)',
+                            'rgba(10,200,10,1)',
+                            'rgba(10,200,10,1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>
 </body>
 </html>

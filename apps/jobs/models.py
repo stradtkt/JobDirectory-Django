@@ -56,6 +56,8 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
 
+class Languages(models.Model):
+    name = models.CharField(max_length=1000, default=0)
 
 class PastJobsManager(models.Manager):
     def validate_past(self, postData):
