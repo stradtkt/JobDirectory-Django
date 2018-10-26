@@ -1,3 +1,6 @@
+body {
+  background: #eeeeee;
+}
 ul.messages {
     list-style-type: none;
 }
