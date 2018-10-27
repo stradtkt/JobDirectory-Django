@@ -32,8 +32,9 @@
                         <div class="list-group">
                             <a href="/jobs/{{job.id}}" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{job.title}}</h5>
-                                <span>{{job.company}} | {{job.area}} | Length: {{job.length}} | Budget: {{job.budget}} - {{job.pay_type}}</span>
+                                <h6 class="mb-1 text-success">{{job.title}}</h6>
+                                
+                                <small>{{job.company}} | {{job.area}} | Length: {{job.length}} months | Budget: {{job.budget}} - {{job.pay_type}}</small>
                                 <small>{{job.created_at}}</small>
                             </div>
                             <p class="mb-1">{{job.desc|truncatechars:255}}</p>

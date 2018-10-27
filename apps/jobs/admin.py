@@ -16,17 +16,6 @@ class UserAppliedAdmin(admin.ModelAdmin):
     search_fields = ('job', 'user')
     raw_id_fields = ('job', 'user')
 
-class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'subtitle', 'slug', 'user', 'blog_category')
-    search_fields = ('title', 'slug', 'user', 'blog_category')
-    raw_id_fields = ('user', 'blog_category')
-    date_hierarchy = 'created_at'
-
-class BlogCategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug')
-
 admin.site.register(User, UserAdmin)
 admin.site.register(Job, JobAdmin)
 admin.site.register(UserApplied, UserAppliedAdmin)
-admin.site.register(Blog, BlogAdmin)
-admin.site.register(BlogCategory, BlogCategoryAdmin)

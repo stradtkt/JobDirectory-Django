@@ -35,6 +35,15 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Developers
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/developers">All Developers</a>
+                            <a class="dropdown-item" href="">Search For Developers</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Jobs
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -43,16 +52,6 @@
                           <a class="dropdown-item" href="/jobs">View All Jobs</a>
                         </div>
                       </li>
-                      <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Blog
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" href="/blog/add-blog">Add Blog</a>
-                              <a class="dropdown-item" href="">Search For Blog</a>
-                              <a class="dropdown-item" href="/blog">View All Blogs</a>
-                            </div>
-                          </li>
                           <li class="nav-item">
                             <a href="/logout" class="nav-link">Logout</a>
                         </li>
@@ -79,7 +78,7 @@
              $(".shuffle-me").shuffleImages({
                target: ".images > img"
              });
-              });
+            });
       
     </script>
     <script>
@@ -87,10 +86,10 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Applied Number", "Blogs", "Jobs", "Users"],
+                    labels: ["Applied Number", "Jobs", "Users"],
                     datasets: [{
                         label: "# of",
-                        data: ['{{applied_amount}}', '{{blogs_amount}}', '{{jobs_amount}}', '{{users}}'],
+                        data: ['{{applied_amount}}', '{{jobs_amount}}', '{{users}}'],
                         backgroundColor: [
                             '#4BB5FF',
                             '#4BB5FF',

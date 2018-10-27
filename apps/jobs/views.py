@@ -62,7 +62,6 @@ def dashboard(request):
     applied = UserApplied.objects.filter(user=user)
     past_jobs = PastJobs.objects.filter(user=user)
     users = User.objects.all().count()
-    blogs = Blog.objects.all().count()
     count_jobs = Job.objects.all().count()
     applied_count = UserApplied.objects.filter(user=user).count()
     context = {
@@ -71,7 +70,6 @@ def dashboard(request):
         "past_jobs": past_jobs,
         "jobs_amount": count_jobs,
         "applied_amount": applied_count,
-        "blogs_amount": blogs,
         "users": users
     }
     return render(request, 'jobs/dashboard.html', context)
@@ -197,31 +195,18 @@ def search(request):
     job_filter = JobFilter(request.GET, queryset=job_list)
     return render(request, 'jobs/job_list.html', {'filter': job_filter})
 
-def blog(request):
-    try:
-        request.session['id']
-    except KeyError:
-        return redirect('/')
-
-    if 'id' in request.session == None:
-        return redirect('/')
-    blogs = Blog.objects.all()
+def developers(request):
+    users = User.objects.all()
     context = {
-        "blogs": blogs
+        "users": users
     }
-    return render(request, 'jobs/blog.html', context)
+    return render(request, 'jobs/developers.html', context)
 
-def single_blog(request, id):
-    try:
-        request.session['id']
-    except KeyError:
-        return redirect('/')
-
-    if 'id' in request.session == None:
-        return redirect('/')
-    blog = Blog.objects.get(id=id)
+def developer_profile(request, id):
+    user = User.objects.get(id=id)
+    past_jobs = PastJobs.objects.filter(user=user)
     context = {
-        "blog": blog
+        "user": user,
+        "past_jobs": past_jobs
     }
-    return render(request, 'jobs/single-post.html', context)
-
+    return render(request, 'jobs/developer-profile.html', context)
