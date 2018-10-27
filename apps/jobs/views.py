@@ -4,7 +4,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .filters import JobFilter
+from .filters import *
 from .models import *
 import bcrypt
 # Create your views here.
@@ -144,7 +144,13 @@ def process_past_jobs(request):
         job_desc = request.POST['job_desc']
         PastJobs.objects.create(user=user, date_from=date_from, date_to=date_to, job_title=job_title, company=company, job_desc=job_desc)
         messages.success(request, 'Added past job, want to add another?')
-        return redirect('/add-past-jobs')
+        return redirect('/dashboard')
+
+def delete_past_job(request, id):
+    item = PastJobs.objects.get(id=id)
+    item.delete()
+    messages.success(request, 'Past job deleted')
+    return redirect('/dashboard')
 
 
 def apply_for_job(request, id):
@@ -194,6 +200,11 @@ def search(request):
     job_list = Job.objects.all()
     job_filter = JobFilter(request.GET, queryset=job_list)
     return render(request, 'jobs/job_list.html', {'filter': job_filter})
+
+def search_for_developer(request):
+    developers = User.objects.all()
+    developer_filter = DeveloperFilter(request.GET, queryset=developers)
+    return render(request, 'jobs/search-for-developer.html', {'filter': developer_filter})
 
 def developers(request):
     users = User.objects.all()

@@ -1,0 +1,70 @@
+{% extends 'jobs/layout.html' %}
+{% block title %} {{block.super}} | Search For Developer {% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-3">
+                {% if messages %}
+                <ul class="messages mt-1 mb-1">
+                    {% for message in messages %}
+                        <li {% if message.tags == "error" %} class="bg-danger text-white" 
+                        {% elif message.tags == "success" %} class="bg-success text-white"
+                        {% endif %}>{{message}}</li><br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <div class="card p-5">
+                <div class="card-header text-center">
+                    <h1>Search For Job</h1>
+                    <form method="GET" class="search">
+                        {{filter.form.as_p}}
+                        <input type="submit" value="Search" class="btn btn-info btn-lg">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% if filter.qs %}
+        <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            <div class="card p-5">
+                <div class="card-header text-center">
+                    <h1>Developers Found</h1>
+                </div>
+                <div class="card-body">
+                        {% for d in filter.qs %}
+                            <div class="list-group">
+                                <a href="/developers/{{d.id}}/developer-profile" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{d.first_name}} {{d.last_name}}</h5>
+                                    <p>Email - {{d.email}} | Username - {{d.username}}</p>
+                                    <small>{{d.created_at}}</small>
+                                </div>
+                                </a>
+                            </div>
+                            <br>
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+        {% else %}
+
+        <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                <div class="card p-5">
+                    <div class="card-header text-center">
+                        <h1>No Jobs Found</h1>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

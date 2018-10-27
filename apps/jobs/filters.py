@@ -1,5 +1,5 @@
 import django_filters
-from .models import Job
+from .models import *
 
 LENGTH_CHOICES = (
     (1, '1'),
@@ -34,12 +34,12 @@ class JobFilter(django_filters.FilterSet):
         model = Job
         fields = ['title', 'skill_level', 'pay_type', 'area', 'budget', 'length',]
 
-        # form = form
-        # filter_overrides = {
-        #     models.CharField: {
-        #         'filter_class': django_filters.CharFilter,
-        #         'extra': lambda f: {
-        #             'lookup_expr': 'icontains'
-        #         },
-        #     },
-        # }
+class DeveloperFilter(django_filters.FilterSet):
+    first_name = django_filters.CharFilter(field_name="first_name", lookup_expr="icontains")
+    last_name = django_filters.CharFilter(field_name="last_name", lookup_expr="icontains")
+    email = django_filters.CharFilter(field_name="email", lookup_expr="icontains")
+    username = django_filters.CharFilter(field_name="username", lookup_expr="icontains")
+    location = django_filters.CharFilter(field_name="location", lookup_expr="icontains")
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'username', 'location']

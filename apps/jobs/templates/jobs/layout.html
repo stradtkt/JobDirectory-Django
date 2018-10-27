@@ -39,7 +39,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="/developers">All Developers</a>
-                            <a class="dropdown-item" href="">Search For Developers</a>
+                            <a class="dropdown-item" href="/search-for-developer/">Search For Developers</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -48,7 +48,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                           <a class="dropdown-item" href="/add-job">Add Job</a>
-                          <a class="dropdown-item" href="{% url 'search' %}">Search For Job</a>
+                          <a class="dropdown-item" href="/search/">Search For Job</a>
                           <a class="dropdown-item" href="/jobs">View All Jobs</a>
                         </div>
                       </li>
@@ -86,7 +86,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Applied Number", "Jobs", "Users"],
+                    labels: ["Applied Number", "Jobs", "Developers"],
                     datasets: [{
                         label: "# of",
                         data: ['{{applied_amount}}', '{{jobs_amount}}', '{{users}}'],
