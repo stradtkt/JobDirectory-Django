@@ -41,11 +41,9 @@
                         {% for d in filter.qs %}
                             <div class="list-group">
                                 <a href="/developers/{{d.id}}/developer-profile" class="list-group-item list-group-item-action flex-column align-items-start">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{{d.first_name}} {{d.last_name}}</h5>
-                                    <p>Email - {{d.email}} | Username - {{d.username}}</p>
-                                    <small>{{d.created_at}}</small>
-                                </div>
+                                    <h3 class="mb-1 text-center">{{d.first_name}} {{d.last_name}}</h3>
+                                    <p class="lead text-center">Email - {{d.email}} | Username - {{d.username}}</p>
+                                    <p class="text-center">{{d.created_at}}</p>
                                 </a>
                             </div>
                             <br>
