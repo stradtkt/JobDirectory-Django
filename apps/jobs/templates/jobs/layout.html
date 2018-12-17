@@ -17,11 +17,13 @@
             <div class="container">
                 <a class="navbar-brand">
                     {% load static %}
-                    <img src="{% static 'jobs/assets/images/navbar-brand.png' %}"  width="40" height="40" alt="Job Directory">
+                    <img src="{% static 'jobs/assets/images/navbar-brand.png' %}"  width="30" height="30" alt="Job Directory">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#example-navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                  </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         {% if 'id' not in request.session %}
                         <ul class="navbar-nav">

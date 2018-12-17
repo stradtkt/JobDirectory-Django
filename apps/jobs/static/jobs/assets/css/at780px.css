@@ -1,0 +1,14 @@
+@media only screen and (max-width: 780px) {
+    #navbarNavDropdown::before {
+        background: dodgerblue;
+    }
+    div.collapse.show .card.card-body p {
+        font-size: 13px;
+    }
+    div.collapse.show .card.card-body p.lead {
+        font-size: 17px;
+    }
+    div.list-group a p.mb-1 {
+        font-size: 0.9em !important;
+    }
+}
